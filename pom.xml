@@ -15,20 +15,15 @@
     <name>SimpleTomcatWebApp</name>
 
     <properties>
-
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
 
         <jacoco.version>0.8.12</jacoco.version>
-
+        <sonar-maven-plugin.version>5.1.0.4751</sonar-maven-plugin.version>
     </properties>
 
-    <!-- ========================= -->
-    <!-- Dependencies              -->
-    <!-- ========================= -->
-
+    <!-- Dependencies -->
     <dependencies>
 
         <dependency>
@@ -47,10 +42,7 @@
 
     </dependencies>
 
-    <!-- ========================= -->
-    <!-- Nexus Repository          -->
-    <!-- ========================= -->
-
+    <!-- Nexus -->
     <distributionManagement>
 
         <repository>
@@ -67,17 +59,11 @@
 
     </distributionManagement>
 
-    <!-- ========================= -->
-    <!-- Build                     -->
-    <!-- ========================= -->
-
     <build>
 
         <finalName>SimpleTomcatWebApp</finalName>
 
         <plugins>
-
-            <!-- Compiler -->
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -85,82 +71,64 @@
                 <version>3.13.0</version>
 
                 <configuration>
-                    <source>17</source>
-                    <target>17</target>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
                 </configuration>
 
             </plugin>
 
-            <!-- WAR Plugin -->
-
             <plugin>
-
                 <groupId>org.apache.maven.plugins</groupId>
-
                 <artifactId>maven-war-plugin</artifactId>
-
                 <version>3.4.0</version>
 
                 <configuration>
-
                     <failOnMissingWebXml>false</failOnMissingWebXml>
-
                 </configuration>
 
             </plugin>
 
-            <!-- JaCoCo -->
-
             <plugin>
-
                 <groupId>org.jacoco</groupId>
-
                 <artifactId>jacoco-maven-plugin</artifactId>
-
                 <version>${jacoco.version}</version>
 
                 <executions>
 
                     <execution>
-
                         <goals>
-
                             <goal>prepare-agent</goal>
-
                         </goals>
-
                     </execution>
 
                     <execution>
-
                         <id>report</id>
-
                         <phase>verify</phase>
 
                         <goals>
-
                             <goal>report</goal>
-
                         </goals>
-
                     </execution>
 
                 </executions>
 
             </plugin>
 
-            <!-- Sonar -->
+            <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>${sonar-maven-plugin.version}</version>
+            </plugin>
 
             <plugin>
-
-                <groupId>org.sonarsource.scanner.maven</groupId>
-
-                <artifactId>sonar-maven-plugin</artifactId>
-
-                <version>5.1.0.4751</version>
-
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>3.1.4</version>
             </plugin>
 
         </plugins>
 
     </build>
+
+</project>
+```
